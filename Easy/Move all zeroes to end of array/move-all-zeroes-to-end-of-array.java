@@ -34,20 +34,36 @@ public class Main {
 
 class Solution {
     void pushZerosToEnd(int[] arr, int n) {
-        // code here
-        int[] temp_arr = new int[n];
-        int j=0;
+        // finding the first occurenece of zero
+        int fp = 0;
+        int sp = 0;
         for(int i=0;i<n;i++)
         {
-            if(arr[i]!=0)
+            if(arr[i]==0)
             {
-                temp_arr[j] = arr[i];
-                j++;
+                fp=i;
+                sp=fp+1;
+                break;
             }
         }
-        for(int i=0;i<n;i++)
+        
+        while(sp<n)
         {
-            arr[i] = temp_arr[i];
+            if(arr[sp]!=0)
+            {
+                swapElements(arr,fp,sp);
+                sp++;
+                fp++;
+            }
+            else{
+                sp++;
+            }
         }
+    }
+    void swapElements(int[] arr,int index1,int index2)
+    {
+        int temp = arr[index2];
+        arr[index2] = arr[index1];
+        arr[index1] = temp;
     }
 }
