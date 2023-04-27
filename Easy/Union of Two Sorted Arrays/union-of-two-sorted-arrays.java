@@ -54,23 +54,47 @@ class Solution
     //Function to return a list containing the union of the two arrays.
     public static ArrayList<Integer> findUnion(int a[], int b[], int n, int m)
     {
-        // add your code here
-        SortedSet<Integer> result = new TreeSet<Integer>();
-        for(int i=0;i<a.length;i++)
+         int i=0;
+        int j = 0;
+         ArrayList<Integer> union = new ArrayList<Integer>();
+        while(i<a.length && j<b.length)
         {
-            result.add(a[i]);
+          if(a[i] <= b[j])
+          {
+            if(union.size()==0 || union.get(union.size() - 1) != a[i])
+            {
+              union.add(a[i]);
+              
+            }
+            i++;
+          }
+          else if(b[j] < a[i])
+          {
+              if(union.size()==0 || union.get(union.size() - 1) != b[j])
+              {
+                 union.add(b[j]);
+                
+              }
+               j++;
+          }
         }
-        for(int i=0;i<b.length;i++)
+        while(i<a.length)
         {
-            result.add(b[i]);
+          if(union.get(union.size()-1) != a[i])
+          {
+            union.add(a[i]);
+          }
+          i++;
         }
-        ArrayList<Integer> list=new ArrayList<Integer>();
-        Iterator<Integer> i = result.iterator();
-        while (i.hasNext())
+        while(j<b.length)
         {
-          list.add(i.next());
+if(union.get(union.size()-1) != b[j])
+          {
+            union.add(b[j]);
+          }
+          j++;
         }
-        return list;
+        return union;
     }
 }
 
