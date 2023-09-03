@@ -25,20 +25,15 @@ class GFG {
 class Solution {
     int isPalindrome(String S) {
         // code here
-         int result = checkPalindrome(0,S);
-         return result;
-    }
-    public int checkPalindrome(int i,String str)
-    {
-    // base condition
-    if(i>= str.length()/2)
-    {
-        return 1;
-    }
-    if(str.charAt(i)!=str.charAt(str.length()-i-1))
-    {
-        return 0;
-    }
-    return checkPalindrome(i+1,str);
+        StringBuffer str = new StringBuffer(S);
+        str.reverse();
+        String check = str.toString();
+        if(S.equals(check))
+        {
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
 };
